@@ -1,5 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    background-color: rgb(54, 54, 54);
+    color: white;
+}
+body {
+    background-color: black;
+}
+
+header, .grid {
+    opacity: 0.2;
+}
+
+.addBook {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    color: white;
+}
+
+.addBook h2 {
+    margin-right: 10px;
+}
+
+.fa-plus-circle:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+    transform: rotate(90deg);
+    transition: 0.3s;
+}
+
+.grid > * {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form {
+    position: absolute;
+    width: 500px;
+    right: 0;
+    left: 550px;
+    bottom: 125px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid;
+    padding: 50px;
+    font-size: 25px;
+    border-radius: 10px;
+    opacity: 1;
+    z-index: 1;
+}
+/*
+.form::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 100000;
+}
+*/
+
+.form label {
+    align-self: flex-start;
+}
+
+.form input {
+    font-size: 25px;
+    outline: none;
+}
+
+.form > * {
+    margin-bottom: 15px;
+}
+
+.btn_form {
+    border: none;
+    background: none;
+}
+
+.form_heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.btn_form > *{
+    cursor: pointer;
+    transform: rotate(225deg);
+}
+
+#close_form:hover{
+    cursor: pointer;
+    transform: rotate(225deg);
+    transition: none;
 }
