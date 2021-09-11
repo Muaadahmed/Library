@@ -143,3 +143,11 @@ header, .grid {
 .grid > * >:last-child {
     border: 1px solid white;
 }
+
+button:focus {
+    outline: none;
+}
+
+.readornot {
+    background-color: none;
+}

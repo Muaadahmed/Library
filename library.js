@@ -19,6 +19,7 @@ let libIncrement = 0;
 let spliceCount = 0;
 let index;
 let bookAttribute = 0;
+let libraryLength;
 
 function Book(title, author, pages, read){
     this.title = title;
@@ -54,9 +55,13 @@ function displayBook(){
         remove.style.borderRadius = "10px";
         remove.style.padding = '10px';
         remove.style.backgroundColor = 'yellow';
-        remove.style.zIndex = 1000;
         remove.style.cursor = "pointer";
-        card.appendChild(remove);
+        const changeReadStatus = document.createElement('button');
+        changeReadStatus.classList.add('readornot');
+        changeReadStatus.textContent = 'Read/Not Read';
+        changeReadStatus.style.borderRadius = '5px';
+        changeReadStatus.style.padding = "10px 20px";
+        changeReadStatus.style.cursor = 'pointer';
         console.log(card.getAttribute('data-obj'));
         grid.appendChild(card);
         remove.addEventListener('click', () => {
@@ -65,6 +70,41 @@ function displayBook(){
             grid.removeChild(card);
             console.log(myLibrary);
         });
+
+        // If you remove from the display a card and then attempt to change read status it either changes on 
+        // the button after it or causes an error (like if you try to change the reading status of the button that
+        // was being changed when another button as clicked)
+        changeReadStatus.addEventListener('click', () => {
+            const parent = document.querySelectorAll('.card');
+            const children = parent[card.getAttribute('data-obj')];
+            const grandChildren = children.childNodes;
+            readStatus(myLibrary.find((el) => el.title == grandChildren[0].textContent));
+            console.log(myLibrary);
+            //console.log(readStatus(myLibrary.find((el) => el.title == grandChildren[0].textContent)));
+            // console.log(myLibrary[card.getAttribute('data-obj')]);
+            // console.log(children);
+            // console.log(children.childNodes);
+            // console.log(grandChildren[0].textContent)
+            // //console.log('data obj: ' + card.getAttribute('data-obj'));
+            // //console.log(card);
+            // console.log('finding obj with specific data att: ' + myLibrary.find((el) => el.title == grandChildren[0].textContent));
+            // console.log(myLibrary);
+            let objectNum = myLibrary.find((el) => el.title == grandChildren[1].textContent);
+            //console.log(grandChildren[1].textContent);
+            // if(card.getAttribute('data-obj') > myLibrary.length){
+            //     libraryLength = Number(card.getAttribute('data-obj'))
+            //     if(myLibrary[libraryLength] == undefined){
+            //         while(myLibrary[libraryLength] == undefined){   
+            //             libraryLength--;
+            //         }
+            //     }
+            // }
+            grandChildren[3].textContent = `${myLibrary.find((el) => el.title == grandChildren[0].textContent).read}`;
+        });
+
+        function arr(el) {
+            
+        }
         //removeBook(cards, card);
             // console.log(card.dataset.obj);
             // //return ((item) => myLibrary.indexOf(item) == card.getAttribute('data-obj'));
@@ -88,13 +128,23 @@ function displayBook(){
             cardText.textContent = `${myLibrary[i][key]}`;
             //document.querySelector('.grid > * > :last-child');
             card.appendChild(cardText);
+            card.appendChild(remove);
+            card.appendChild(changeReadStatus);
         }
         curr_Book_Obj++;
     }
 }
 
 function readStatus(bookObj) {
-    bookObj.read = user_read;
+    if(bookObj.read == user_read){
+        bookObj.read = user_not_read;
+        console.log('card is read: ' + bookObj)
+        return bookObj.read;
+    } else {
+        bookObj.read = user_read;
+        console.log('card is not read: ' + bookObj);
+        return bookObj.read;
+    }
 }
 
 function exitFormBtn(){
