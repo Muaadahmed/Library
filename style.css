@@ -57,12 +57,12 @@ header, .grid {
     display: flex;
     flex-direction: column;
     background-color: white;
-    border: 1px solid;
     padding: 50px;
     font-size: 25px;
     border-radius: 10px;
     opacity: 1;
     z-index: 1;
+    box-shadow: 0 0 14px 0px rgb(218, 217, 217);
 }
 /*
 .form::after {
@@ -110,4 +110,36 @@ header, .grid {
     cursor: pointer;
     transform: rotate(225deg);
     transition: none;
+}
+
+.submit {
+    position: relative;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.grid {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    display: grid;
+    justify-content: space-around;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 100px;
+    padding: 50px;
+}
+
+.grid > * >:last-child {
+    border: 1px solid white;
 }
