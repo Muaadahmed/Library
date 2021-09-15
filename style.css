@@ -43,10 +43,11 @@ header, .grid {
 
 .grid > * {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
 }
+
 
 .form {
     position: absolute;
@@ -61,20 +62,9 @@ header, .grid {
     font-size: 25px;
     border-radius: 10px;
     opacity: 1;
-    z-index: 1;
+    z-index: 10;
     box-shadow: 0 0 14px 0px rgb(218, 217, 217);
 }
-/*
-.form::after {
-    content: '';
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    z-index: 100000;
-}
-*/
 
 .form label {
     align-self: flex-start;

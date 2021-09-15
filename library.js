@@ -18,8 +18,10 @@ let elementStorage = [];
 let libIncrement = 0;
 let spliceCount = 0;
 let index;
-let bookAttribute = 0;
 let libraryLength;
+let child;
+let set_Attribute_Iterable = 0;
+
 
 function Book(title, author, pages, read){
     this.title = title;
@@ -34,7 +36,6 @@ function Book(title, author, pages, read){
 function addBookToLibrary(title, author, pages, read){
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
-    bookAttribute++;
 }
 
 // submit button and once submitted display info on a card in the grid
@@ -42,18 +43,17 @@ function addBookToLibrary(title, author, pages, read){
 function displayBook(){
     for(let i = curr_Book_Obj; i < myLibrary.length; i++){
         //display book onto screen
-        console.log(i);
         const card = document.createElement('div');
         card.classList.add('card');
-        card.style.height = '220px';
-        card.style.width = '220px';
+        card.style.height = '350px';
+        card.style.width = '250px';
         card.style.borderRadius = '10px';
-        card.style.backgroundColor = 'red';
+        card.style.backgroundColor = 'silver';
         card.setAttribute('data-obj', `${i}`);
         const remove = document.createElement('button');
         remove.textContent = "remove";
         remove.style.borderRadius = "10px";
-        remove.style.padding = '10px';
+        remove.style.padding = '7px 15px';
         remove.style.backgroundColor = 'yellow';
         remove.style.cursor = "pointer";
         const changeReadStatus = document.createElement('button');
@@ -62,49 +62,96 @@ function displayBook(){
         changeReadStatus.style.borderRadius = '5px';
         changeReadStatus.style.padding = "10px 20px";
         changeReadStatus.style.cursor = 'pointer';
-        console.log(card.getAttribute('data-obj'));
         grid.appendChild(card);
         remove.addEventListener('click', () => {
-            console.log(card.getAttribute('data-obj'));
+            
+            //console.log(card.getAttribute('data-obj'));
             myLibrary.splice(card, 1);
             grid.removeChild(card);
-            console.log(myLibrary);
+            grid.childNodes.forEach(function(el){
+                el.setAttribute('data-obj', `${set_Attribute_Iterable}`);
+                set_Attribute_Iterable++;
+            });
+            //console.log(card.childNodes.getAttribute('data-obj'));
+
+            // grid.removeChild(card);
+            // console.log(myLibrary);
+            grid.childNodes.forEach((el) => console.log(el))
+            curr_Book_Obj--;
+            while(set_Attribute_Iterable > 0){
+                set_Attribute_Iterable--;
+            }
         });
 
         // If you remove from the display a card and then attempt to change read status it either changes on 
         // the button after it or causes an error (like if you try to change the reading status of the button that
         // was being changed when another button as clicked)
         changeReadStatus.addEventListener('click', () => {
-            const parent = document.querySelectorAll('.card');
-            const children = parent[card.getAttribute('data-obj')];
-            const grandChildren = children.childNodes;
-            readStatus(myLibrary.find((el) => el.title == grandChildren[0].textContent));
-            console.log(myLibrary);
-            //console.log(readStatus(myLibrary.find((el) => el.title == grandChildren[0].textContent)));
-            // console.log(myLibrary[card.getAttribute('data-obj')]);
-            // console.log(children);
-            // console.log(children.childNodes);
-            // console.log(grandChildren[0].textContent)
-            // //console.log('data obj: ' + card.getAttribute('data-obj'));
-            // //console.log(card);
-            // console.log('finding obj with specific data att: ' + myLibrary.find((el) => el.title == grandChildren[0].textContent));
-            // console.log(myLibrary);
-            let objectNum = myLibrary.find((el) => el.title == grandChildren[1].textContent);
-            //console.log(grandChildren[1].textContent);
-            // if(card.getAttribute('data-obj') > myLibrary.length){
-            //     libraryLength = Number(card.getAttribute('data-obj'))
-            //     if(myLibrary[libraryLength] == undefined){
-            //         while(myLibrary[libraryLength] == undefined){   
-            //             libraryLength--;
-            //         }
+            //parent gives me nodelist of all card objects
+            //children gives me a card object in a nodelist
+            //children.nodes gives me the elements inside the card object 
+            let parent = document.querySelectorAll('.card');
+            readStatus(myLibrary[card.getAttribute('data-obj')]);
+            console.log(parent[card.getAttribute('data-obj')]);
+            console.log('current data num: ' + card.getAttribute('data-obj'));
+            card.childNodes[3].textContent = `${myLibrary[card.getAttribute('data-obj')].read}`;
+            //returns the card that matches that one that as clicked
+            // function kids(){
+            //     for (let i = 0; i < parent.length; i++){
+            //         // if(parent[i].getAttribute('data-obj') == card.getAttribute('data-obj')){
+            //             return parent[i];
+            //         // }
             //     }
             // }
-            grandChildren[3].textContent = `${myLibrary.find((el) => el.title == grandChildren[0].textContent).read}`;
-        });
+            // obj with the index so if library has an object with an id and the ca
+            // console.log(kids());
+            // console.log(kids().getAttribute('data-obj'));
+            // for (let i = 0; i < myLibrary.length; i++){
+            //     console.log(myLibrary.includes(i) == true);
+            // }
+            // parent.forEach(function(el){
+            //         if(Number(el.getAttribute('data-obj')) == Number(card.getAttribute('data-obj'))){
+            //             console.log(el.childNodes[3].textContent);
+            //             return el;
+            //         }
+            //     }
+            // );
+            // console.log('current data obj: ' + parent.item((el) => el.getAttribute('data-obj') == card.getAttribute('data-obj')));
+            // let children = parent.item((el) => el.getAttribute('data-obj') == card.getAttribute(`data-obj ${1}`)).childNodes[0].textContent;//.childNodes[0].textContent;
+            // //const children = parent[card.getAttribute('data-obj')];
+            // console.log('parent is: ' + typeof parent);
+            // console.log('children: ' + children);
+            // console.log(typeof myLibrary[0].title);
+            //const grandChildren = children.childNodes;
 
-        function arr(el) {
-            
-        }
+            //readStatus();
+            // child.item(function(el) {
+            //     if(el == 4){
+            //         el.textContent = `${myLibrary.forEach(el => {if(myLibrary.indexOf(el) == card.getAttribute('data-obj')){return el}}).read}`}
+            //     }
+            // );
+            // console.log(myLibrary);
+            // //console.log(readStatus(myLibrary.find((el) => el.title == grandChildren[0].textContent)));
+            // // console.log(myLibrary[card.getAttribute('data-obj')]);
+            // // console.log(children);
+            // // console.log(children.childNodes);
+            // // console.log(grandChildren[0].textContent)
+            // // //console.log('data obj: ' + card.getAttribute('data-obj'));
+            // // //console.log(card);
+            // // console.log('finding obj with specific data att: ' + myLibrary.find((el) => el.title == grandChildren[0].textContent));
+            // // console.log(myLibrary);
+            // let objectNum = myLibrary.find((el) => el.title == grandChildren[1].textContent);
+            // //console.log(grandChildren[1].textContent);
+            // // if(card.getAttribute('data-obj') > myLibrary.length){
+            // //     libraryLength = Number(card.getAttribute('data-obj'))
+            // //     if(myLibrary[libraryLength] == undefined){
+            // //         while(myLibrary[libraryLength] == undefined){   
+            // //             libraryLength--;
+            // //         }
+            // //     }
+            // // }
+            // grandChildren[3].textContent = `${myLibrary.find((el) => el.title == grandChildren[0].textContent).read}`;
+        });
         //removeBook(cards, card);
             // console.log(card.dataset.obj);
             // //return ((item) => myLibrary.indexOf(item) == card.getAttribute('data-obj'));
@@ -124,7 +171,8 @@ function displayBook(){
             //return myLibrary.splice(card.getAttribute('data-obj'), 1), console.log(myLibrary);
         for(let key in myLibrary[i]){
             const cardText = document.createElement('h2');
-            cardText.style.color = "White";
+            cardText.style.color = "black";
+            cardText.style.fontSize = '20px';
             cardText.textContent = `${myLibrary[i][key]}`;
             //document.querySelector('.grid > * > :last-child');
             card.appendChild(cardText);
@@ -132,6 +180,8 @@ function displayBook(){
             card.appendChild(changeReadStatus);
         }
         curr_Book_Obj++;
+        
+        cards = document.querySelectorAll('.card');
     }
 }
 
@@ -151,6 +201,12 @@ function exitFormBtn(){
     form.style.display = 'none';
     document.querySelector('header').style.opacity = 1;
     grid.style.opacity = 1;
+}
+
+function displayFormBtn(){
+    form.style.display = 'flex';
+    document.querySelector('header').style.opacity = 0.2;
+    grid.style.opacity = 0.2;
 }
 
 

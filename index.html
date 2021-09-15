@@ -11,7 +11,7 @@
 <body>
     <header>
         <h1>LIBBY</h1>
-        <button class="addBook" type="button"><h2>NEW BOOK</h2><i class="fas fa-plus-circle fa-3x"></i></button>
+        <button class="addBook" type="button" onclick="displayFormBtn();"><h2>NEW BOOK</h2><i class="fas fa-plus-circle fa-3x"></i></button>
     </header>
     <form class="form">
         <div class="form_heading">
@@ -19,10 +19,10 @@
             <button class="btn_form" type="button" onclick="exitFormBtn();"><i class="fas fa-plus-circle fa-3x" id="close_form"></i></button>
         </div>    
         <label for="title"><b>Title</b></label>
-        <input class="title" type="text" name="title" required>
+        <input class="title" type="text" name="title" maxlength="16" required>
         
         <label for="author"><b>Author</b></label>
-        <input class="author" type="text" name="author" required>
+        <input class="author" type="text" name="author" maxlength="16" required>
 
         <label for="pages"><b>Page</b></label>
         <input class="pages" type="text" name="pages" required>
