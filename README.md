@@ -29,7 +29,9 @@
             Note: 
                 Challenging parts:
 
-                - Finding a way to match the data attributes numbers with the index of the books, because the data attribute numbers for each card do not change when you remove them while the book index values do.
+                - Finding a way to match the data attributes numbers with the index of the books, 
+                because the data attribute numbers for each card do not change when you remove 
+                them while the book index values do.
 
                 Solution:
 
