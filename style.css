@@ -49,7 +49,7 @@ header, .grid {
 }
 
 
-.form {
+#form {
     position: absolute;
     width: 500px;
     right: 0;
@@ -66,16 +66,16 @@ header, .grid {
     box-shadow: 0 0 14px 0px rgb(218, 217, 217);
 }
 
-.form label {
+#form label {
     align-self: flex-start;
 }
 
-.form input {
+#form input {
     font-size: 25px;
     outline: none;
 }
 
-.form > * {
+#form > * {
     margin-bottom: 15px;
 }
 

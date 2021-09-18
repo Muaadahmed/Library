@@ -9,8 +9,15 @@
         - Create a book constructor to create book objects.
         - Create a form for user to input the book details.
         - When a new book is created store it into an array.
+
+    Form Submittion:
+
+        - Creates an object based on the form input.
+        - Places object in to the Library.
+        - Displays card in DOM.
+        - All fields are required to have a value except for the read status checkbox.
     
-    Adding, Removing, and changing reading status on Books in the display:
+    Adding, Removing, and changing reading status on Books:
 
         - Added books:
 
@@ -27,7 +34,7 @@
             2. Also removes books from array.
 
             Note: 
-                Challenging parts:
+                Challenging part:
 
                 - Finding a way to match the data attributes numbers with the index of the books, 
                 because the data attribute numbers for each card do not change when you remove 
@@ -36,6 +43,11 @@
                 Solution:
 
                 - loop through each card and reset the data attribute numbers so that they match the index of the library array.
+
+        - Change Reading Status:
+
+            1. Changes "Read" or "Not Read Yet" status on the card.
+            2. Changes "Read" or "Not Read Yet" status on the book in the Library.
 
 
 

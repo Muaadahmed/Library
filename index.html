@@ -13,24 +13,24 @@
         <h1>LIBBY</h1>
         <button class="addBook" type="button" onclick="displayFormBtn();"><h2>NEW BOOK</h2><i class="fas fa-plus-circle fa-3x"></i></button>
     </header>
-    <form class="form">
+    <form id="form" action="/" method="GET">
         <div class="form_heading">
             <h2>New Book</h2>
             <button class="btn_form" type="button" onclick="exitFormBtn();"><i class="fas fa-plus-circle fa-3x" id="close_form"></i></button>
         </div>    
         <label for="title"><b>Title</b></label>
-        <input class="title" type="text" name="title" maxlength="16" required>
+        <input id="title" type="text" name="title" maxlength="16" required>
         
         <label for="author"><b>Author</b></label>
-        <input class="author" type="text" name="author" maxlength="16" required>
+        <input id="author" type="text" name="author" maxlength="16" required>
 
         <label for="pages"><b>Page</b></label>
-        <input class="pages" type="text" name="pages" required>
+        <input id="pages" type="number" name="pages" required>
 
         <label for="read"><b>Read</b></label>
         <input type="checkbox" id="read" name="read">
 
-        <button class="submit" type="button">Submit</button>
+        <button class="submit" type="submit">Submit</button>
     </form>
     <section class="main">
         <div class="grid"></div>
