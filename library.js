@@ -104,8 +104,6 @@ function displayBook(){
             card.appendChild(changeReadStatus);
         }
         curr_Book_Obj++;
-        
-        cards = document.querySelectorAll('.card');
     }
 }
 
